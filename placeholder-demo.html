@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>jQuery Placeholder Plugin</title>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
+<script src='placeholder.js'></script>
+<script>
+
+$(document).ready(function(){
+    
+    $("#tbox1").placeholder({}); // Eg. 1
+    
+    $("#tbox2").placeholder({placeholderProperty: "value"}); // Eg. 2
+    
+    $("#tbox3").placeholder({defaultValue: "Say something cool.."}); // Eg. 2
+    
+});
+
+
+</script>
+</head>
+<body>
+<h1>jQuery Placeholder Plugin</h1>
+<em>Copyright &copy; 2011 Saurabh R Nair &lt;saurabh@rebugged.com&gt;</em>
+<p>Plugin URL: <a href="http://rebugged.com/placeholder/">http://rebugged.com/placeholder/</a></p>
+<p> page source to see how it works.</p>
+<h3>Eg.1 - HTML5 placeholder attribute</h3>
+<pre>
+$("#tbox1").placeholder({});
+</pre>
+<div><input id='tbox1' type='text' placeholder='Username' /></div>
+<h3>Eg.2 - HTML value attribute</h3>
+<pre>
+$("#tbox2").placeholder({placeholderProperty: "value"});
+</pre>
+<div><input id='tbox2' type='text' value='Search..' /></div>
+
+<h3>Eg.3 - Passing default value as function parameter in script</h3>
+<pre>
+$("#tbox3").placeholder({defaultValue: "Say something cool.."});
+</pre>
+<div><input id='tbox3' type='text'/></div>
+
+</body>
+</html>
