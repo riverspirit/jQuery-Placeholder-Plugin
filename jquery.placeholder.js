@@ -14,39 +14,47 @@
 (function($){
     $.fn.placeholder = function(options){
         
-        var settings = {
-            defaultValue    : '', // If set, will override placeholderAttribute
-            placeholderProperty : 'placeholder' // Input property containing placeholder text
-        };
-        
-        if (options)
+        // Detecting HTML5 placeholder support in browser
+        var input = document.createElement('input');
+        if ('placeholder' in input)
         {
-            $.extend(settings, options);
-        }
-        
-        if (settings.defaultValue == '')
-        {
-            var defaultVal = this.attr(settings.placeholderProperty);
+            return this;
         }
         else
         {
-            var defaultVal = settings.defaultValue;
+            var settings = {
+                defaultValue    : '', // If set, will override placeholderAttribute
+                placeholderProperty : 'placeholder' // Input property containing placeholder text
+            };
+            
+            if (options) {
+                $.extend(settings, options);
+            }
+            
+            if (settings.defaultValue == '') {
+                var defaultVal = this.attr(settings.placeholderProperty);
+            }
+            else {
+                var defaultVal = settings.defaultValue;
+            }
+            
+            $(this).val(defaultVal);
+    
+            this.click(function(){
+                if ($(this).val() == defaultVal)
+                {
+                    $(this).val("");
+                }
+            });
+            
+            this.blur(function(){
+                if ($(this).val() == '')
+                {
+                    $(this).val(defaultVal);
+                }
+            });
+            
+            return this;
         }
-        
-        $(this).val(defaultVal);
-
-        this.click(function(){
-            if ($(this).val() == defaultVal)
-            {
-                $(this).val("");
-            }
-        });
-        
-        this.blur(function(){
-            if ($(this).val() == '')
-            {
-                $(this).val(defaultVal);
-            }
-        });
     };
 }) (jQuery)
