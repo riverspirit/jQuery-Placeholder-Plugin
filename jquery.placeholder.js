@@ -13,15 +13,7 @@
  */
 (function($){
     $.fn.placeholder = function(options){
-        
-        // Detecting HTML5 placeholder support in browser
-        var input = document.createElement('input');
-        if ('placeholder' in input)
-        {
-            return this;
-        }
-        else
-        {
+
             var settings = {
                 defaultValue    : '', // If set, will override placeholderAttribute
                 placeholderProperty : 'placeholder' // Input property containing placeholder text
@@ -30,7 +22,16 @@
             if (options) {
                 $.extend(settings, options);
             }
-            
+     
+        // Detecting HTML5 placeholder support in browser
+        var input = document.createElement('input');
+        
+        if ('placeholder' in input && settings.placeholderProperty == 'placeholder' && settings.defaultValue == '')
+        {
+            return this;
+        }
+        else
+        {
             if (settings.defaultValue == '') {
                 var defaultVal = this.attr(settings.placeholderProperty);
             }
