@@ -14,14 +14,17 @@
 (function($){
     $.fn.placeholder = function(options){
 
-            var settings = {
-                defaultValue    : '', // If set, will override placeholderAttribute
-                placeholderProperty : 'placeholder' // Input property containing placeholder text
-            };
-            
-            if (options) {
-                $.extend(settings, options);
-            }
+        var settings = {
+            defaultValue    : '', // If set, will override placeholderAttribute
+            placeholderProperty : 'placeholder', // Input property containing placeholder text
+            opacity : '0.5'
+        };
+        
+        if (options) {
+            $.extend(settings, options);
+        }
+        
+        var actualOpacity = $(this).css('opacity');
      
         // Detecting HTML5 placeholder support in browser
         var input = document.createElement('input');
@@ -32,6 +35,8 @@
         }
         else
         {
+            // All the working is done here!
+            
             if (settings.defaultValue == '') {
                 var defaultVal = this.attr(settings.placeholderProperty);
             }
@@ -40,11 +45,13 @@
             }
             
             $(this).val(defaultVal);
+            $(this).css('opacity', settings.opacity);
     
             this.click(function(){
                 if ($(this).val() == defaultVal)
                 {
                     $(this).val("");
+                    $(this).css('opacity', actualOpacity);
                 }
             });
             
@@ -52,6 +59,7 @@
                 if ($(this).val() == '')
                 {
                     $(this).val(defaultVal);
+                    $(this).css('opacity', settings.opacity);
                 }
             });
             
