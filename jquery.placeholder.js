@@ -25,6 +25,8 @@
         }
         
         var actualOpacity = $(this).css('opacity');
+        var actualOpacityIE = $(this).css('filter');
+        var opacityIE = "alpha(opacity="+(settings.opacity * 100)+")";
      
         // Detecting HTML5 placeholder support in browser
         var input = document.createElement('input');
@@ -46,12 +48,14 @@
             
             $(this).val(defaultVal);
             $(this).css('opacity', settings.opacity);
+            $(this).css('filter', opacityIE);
     
             this.click(function(){
                 if ($(this).val() == defaultVal)
                 {
                     $(this).val("");
                     $(this).css('opacity', actualOpacity);
+                    $(this).css('filter', actualOpacityIE);
                 }
             });
             
